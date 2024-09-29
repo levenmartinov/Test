@@ -11,7 +11,8 @@ public class Star_Triangle {
                 System.out.print(" ");
             }
 
-            // Yıldızları yazdır
+
+
             for (int j = 0; j < (2 * i + 1); j++) {
                 // A harfinin çapraz kenarları ve ortası için
                 if (j == 0 || j == (2 * i) || (i == rows / 2 && j > 0 && j < (2 * i)))  {
