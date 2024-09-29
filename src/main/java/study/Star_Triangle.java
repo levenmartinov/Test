@@ -11,6 +11,7 @@ public class Star_Triangle {
                 System.out.print(" ");
             }
 
+            //sadasdasd
 
 
             for (int j = 0; j < (2 * i + 1); j++) {
