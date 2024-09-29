@@ -11,7 +11,7 @@ public class test_01 {
             num++;
         }while (num > 2);
 
-
+        System.out.println("adadad");
 
 
 
