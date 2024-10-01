@@ -2,112 +2,114 @@ package study;
 
 import java.util.Scanner;
 
-public class BankaSistemiBasit {
-    // Örnek kullanıcı verileri
-    private static String kullaniciKartNumarasi = "1234567890123456";
-    private static String kullaniciSifre = "1234";
-    private static double bakiye = 1000;
+public class DebitCardCheck {
+
+
+    private static String userCardNumber = "9000 8000 7000 6000";
+    private static String userPassword = "7412";
+    private static double balance = 250000;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String kartNumarasi, sifre;
+        String cardNumber, password;
 
-        // Kullanıcı girişi
+        // User login
         while (true) {
-            System.out.print("Kart numaranızı giriniz: ");
-            kartNumarasi = scanner.nextLine().replace(" ", "");  // Boşlukları kaldır
+            System.out.print("Enter your card number : ");
+            cardNumber = scanner.nextLine().replace(" ", "");
 
-            System.out.print("Şifrenizi giriniz: ");
-            sifre = scanner.nextLine();
+            System.out.print("Enter your password : ");
+            password = scanner.nextLine();
 
-            if (kartNumarasi.equals(kullaniciKartNumarasi) && sifre.equals(kullaniciSifre)) {
-                System.out.println("Giriş başarılı!");
+            if (cardNumber.equals(userCardNumber.replace(" ", "")) && password.equals(userPassword)) {
+                System.out.println("Login successful...");
                 break;
             } else {
-                System.out.println("Kart numarası veya şifre hatalı. Tekrar deneyiniz.");
+                System.out.println("Invalid card number or password. Please try again!");
             }
         }
 
-        // Ana menü döngüsü
+        // Main menu loop
         while (true) {
-            System.out.println("\n--- Ana Menü ---");
-            System.out.println("1. Bakiye Sorgulama");
-            System.out.println("2. Para Yatırma");
-            System.out.println("3. Para Çekme");
-            System.out.println("4. Para Gönderme");
-            System.out.println("5. Şifre Değiştirme");
-            System.out.println("6. Çıkış");
-            System.out.print("Bir seçenek seçiniz: ");
-            int secim = scanner.nextInt();
+            System.out.println("\n--- Main Menu ---");
+            System.out.println("1. Balance Inquiry");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Transfer Money");
+            System.out.println("5. Change Password");
+            System.out.println("6. Exit");
+            System.out.print("Choose an option : ");
+            int option = scanner.nextInt();
 
-            if (secim == 1) {
-                // Bakiye Sorgulama
-                System.out.println("Mevcut bakiyeniz: " + bakiye + " TL");
-            } else if (secim == 2) {
-                // Para Yatırma
-                System.out.print("Yatırmak istediğiniz tutar: ");
-                double miktar = scanner.nextDouble();
-                if (miktar > 0) {
-                    bakiye += miktar;
-                    System.out.println("Yeni bakiyeniz: " + bakiye + " TL");
+            if (option == 1) {
+                // Balance Inquiry
+                System.out.println("Your current balance is: £ " + balance);
+            } else if (option == 2) {
+                // Deposit
+                System.out.print("Enter the amount to deposit: ");
+                double amount = scanner.nextDouble();
+                if (amount > 0) {
+                    balance += amount;
+                    System.out.println("Deposit successful! New balance: £ " + balance);
                 } else {
-                    System.out.println("Geçersiz tutar.");
+                    System.out.println("Invalid amount.");
                 }
-            } else if (secim == 3) {
-                // Para Çekme
-                System.out.print("Çekmek istediğiniz tutar: ");
-                double miktar = scanner.nextDouble();
-                if (miktar > 0 && miktar <= bakiye) {
-                    bakiye -= miktar;
-                    System.out.println("Yeni bakiyeniz: " + bakiye + " TL");
+            } else if (option == 3) {
+                // Withdraw
+                System.out.print("Enter the amount to withdraw : ");
+                double amount = scanner.nextDouble();
+                if (amount > 0 && amount <= balance) {
+                    balance -= amount;
+                    System.out.println("Withdrawal successful! New balance: £" + balance );
                 } else {
-                    System.out.println("Yetersiz bakiye veya geçersiz tutar.");
+                    System.out.println("Insufficient funds or invalid amount.");
                 }
-            } else if (secim == 4) {
-                // Para Gönderme
-                scanner.nextLine();  // Yeni satırı temizle
-                System.out.print("IBAN giriniz (TR ile başlamalı ve 26 karakter olmalı): ");
-                String iban = scanner.nextLine();
+            } else if (option == 4) {
+                // Transfer Money
+                scanner.nextLine();
+                System.out.print("Enter the IBAN to transfer to (must start with TR and be 26 characters): ");
+                String iban = scanner.nextLine().toUpperCase();
+
                 if (iban.startsWith("TR") && iban.length() == 26) {
-                    System.out.print("Göndermek istediğiniz tutar: ");
-                    double miktar = scanner.nextDouble();
-                    if (miktar > 0 && miktar <= bakiye) {
-                        bakiye -= miktar;
-                        System.out.println("Para gönderildi. Yeni bakiyeniz: " + bakiye + " TL");
+                    System.out.print("Enter the amount to transfer: ");
+                    double amount = scanner.nextDouble();
+                    if (amount > 0 && amount <= balance) {
+                        balance -= amount;
+                        System.out.println("Transfer successful! New balance: £" + balance);
                     } else {
-                        System.out.println("Yetersiz bakiye veya geçersiz tutar.");
+                        System.out.println("Insufficient funds or invalid amount.");
                     }
                 } else {
-                    System.out.println("Geçersiz IBAN.");
+                    System.out.println("Invalid IBAN. Returning to main menu.");
                 }
-            } else if (secim == 5) {
-                // Şifre Değiştirme
-                scanner.nextLine();  // Yeni satırı temizle
-                System.out.print("Mevcut şifrenizi giriniz: ");
-                String mevcutSifre = scanner.nextLine();
+            } else if (option == 5) {
+                // Change Password
+                scanner.nextLine();
+                System.out.print("Enter your current password: ");
+                String currentPassword = scanner.nextLine();
 
-                if (mevcutSifre.equals(kullaniciSifre)) {
-                    System.out.print("Yeni şifrenizi giriniz: ");
-                    String yeniSifre = scanner.nextLine();
+                if (currentPassword.equals(userPassword)) {
+                    System.out.print("Enter your new password: ");
+                    String newPassword = scanner.nextLine();
 
-                    System.out.print("Yeni şifrenizi tekrar giriniz: ");
-                    String yeniSifreTekrar = scanner.nextLine();
+                    System.out.print("Confirm your new password: ");
+                    String confirmPassword = scanner.nextLine();
 
-                    if (yeniSifre.equals(yeniSifreTekrar) && yeniSifre.length() >= 4) {
-                        kullaniciSifre = yeniSifre;
-                        System.out.println("Şifre başarıyla değiştirildi!");
+                    if (newPassword.equals(confirmPassword) && newPassword.length() >= 4) {
+                        userPassword = newPassword;
+                        System.out.println("Password changed successfully!");
                     } else {
-                        System.out.println("Şifreler uyuşmuyor veya geçersiz şifre.");
+                        System.out.println("Passwords do not match or invalid password.");
                     }
                 } else {
-                    System.out.println("Mevcut şifre hatalı.");
+                    System.out.println("Incorrect current password.");
                 }
-            } else if (secim == 6) {
-                // Çıkış
-                System.out.println("Çıkış yapılıyor...");
+            } else if (option == 6) {
+                // Exit
+                System.out.println("Exiting...");
                 break;
             } else {
-                System.out.println("Geçersiz seçenek.");
+                System.out.println("Invalid option. Please try again.");
             }
         }
     }
