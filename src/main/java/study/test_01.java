@@ -5,19 +5,20 @@ public class test_01 {
 
 
 
-        int num = 2;
+        int i = 758;
+        int s = 0;
         do {
-            System.out.print(num + " ");
-            num++;
-        }while (num > 2);
 
-        System.out.println("adadad");
+            s = s + i % 10;
 
+            i = i / 10;
 
-
-
+        } while (i != 0);
+        System.out.println(s);
 
 
+
+//Cikti asagidakilerden hangisidir?
 
 
 
