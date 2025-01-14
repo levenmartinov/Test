@@ -1,5 +1,7 @@
 package qustionBankAfter238;
 
+import java.util.Locale;
+
 public class StringManipulations {
     public static void main(String[] args) {
 
@@ -73,6 +75,14 @@ public class StringManipulations {
         System.out.println("Askim => " + ilkKrkDisinda); //Askim => Nigar*/
 
 
+    /*    //8) B!r Str!ng deg!sken! olusturunuz ve son karakter! dısındak! tüm karakterler!n! konsolda
+        //büyük harfle yazdırınız.
+        //Örnek: String 'Java' ise konsola 'JAV' yazdırmalısınız.
+
+        String s = "Java";
+        Integer sonKrkIndex = s.length() - 1;
+        String sonKrkDisinda = s.substring(0, sonKrkIndex).toUpperCase(Locale.ROOT);
+        System.out.println("son karketre buyuk harg : " + sonKrkDisinda); //JAV*/
 
 
 
